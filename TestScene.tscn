@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://ouwsw0ym5iyt"]
+
+[ext_resource type="PackedScene" uid="uid://6yr87jnotk48" path="res://2dPlayer.tscn" id="1_mncer"]
+[ext_resource type="PackedScene" uid="uid://duwh76asbuocc" path="res://2dRobot.tscn" id="2_cguwc"]
+
+[sub_resource type="Gradient" id="Gradient_mncer"]
+offsets = PackedFloat32Array(0.038961, 0.363636, 0.74026)
+colors = PackedColorArray(0.831373, 1, 0.952941, 0.764706, 1, 1, 0.745098, 0.568627, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cguwc"]
+gradient = SubResource("Gradient_mncer")
+fill = 1
+fill_from = Vector2(0.509174, 0.481651)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.18359, 0.18359, 0.18359, 1)
+polygon = PackedVector2Array(88, 184, 88, 593, 882, 592, 880, 184)
+
+[node name="Node2D" parent="." instance=ExtResource("1_mncer")]
+position = Vector2(489, 330)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(821, 382)
+scale = Vector2(10.293, 10.4682)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_cguwc")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(258, 376)
+scale = Vector2(11.7695, 11.9699)
+shadow_enabled = true
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_cguwc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(542, 362)
+zoom = Vector2(2.035, 2.035)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_cguwc")]
+position = Vector2(770, 273)
+rotation = 2.6337

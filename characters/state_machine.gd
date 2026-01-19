@@ -1,0 +1,33 @@
+extends Node
+
+@export var initial_state: State
+var current_state: State
+var states: Dictionary = {}
+
+func _ready():
+	for child in get_children():
+		if child is State:
+			states[child.name.to_lower()] = child
+			child.character = get_parent()
+			child.state_machine = self
+	
+	if initial_state:
+		initial_state.enter()
+		current_state = initial_state
+
+func _unhandled_input(event):
+	current_state.handle_input(event)
+
+func _physics_process(delta):
+	current_state.physics_update(delta)
+
+func transition_to(new_state_name: String):
+	print(current_state)
+	var new_state = states.get(new_state_name.to_lower())
+	print(new_state)
+	if !new_state or new_state == current_state:
+		return
+		
+	current_state.exit()
+	new_state.enter()
+	current_state = new_state
