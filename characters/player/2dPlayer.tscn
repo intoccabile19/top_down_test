@@ -1,13 +1,13 @@
 [gd_scene load_steps=157 format=3 uid="uid://6yr87jnotk48"]
 
-[ext_resource type="Script" uid="uid://btwnji17d0v6l" path="res://2d_player.gd" id="1_3g7d7"]
+[ext_resource type="Script" uid="uid://btwnji17d0v6l" path="res://characters/player/2d_player.gd" id="1_3g7d7"]
 [ext_resource type="Texture2D" uid="uid://djw2sdkjbl2ph" path="res://sprites/JunkerMale/Junker_Male_Idle.png" id="1_5lrcj"]
 [ext_resource type="Texture2D" uid="uid://2ws42lemy23" path="res://sprites/JunkerMale/Junker_Male_Interact.png" id="3_7373n"]
 [ext_resource type="Texture2D" uid="uid://cw21swhusupp6" path="res://sprites/JunkerMale/Junker_Male_Run.png" id="3_nygxh"]
 [ext_resource type="Texture2D" uid="uid://khrc2htf3l1e" path="res://sprites/JunkerMale/Junker_Male_Walk.png" id="4_ghvv0"]
-[ext_resource type="Script" uid="uid://chw483mjw1g1y" path="res://characters/state_machine.gd" id="5_ghvv0"]
-[ext_resource type="Script" uid="uid://dsb62oev68wda" path="res://characters/interact.gd" id="6_bic2t"]
-[ext_resource type="Script" uid="uid://c15unahtvpjq3" path="res://characters/locomotion.gd" id="6_q2t3p"]
+[ext_resource type="Script" uid="uid://chw483mjw1g1y" path="res://characters/states/state_machine.gd" id="5_ghvv0"]
+[ext_resource type="Script" uid="uid://dsb62oev68wda" path="res://characters/states/interact.gd" id="6_bic2t"]
+[ext_resource type="Script" uid="uid://c15unahtvpjq3" path="res://characters/states/locomotion.gd" id="6_q2t3p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3g7d7"]
 atlas = ExtResource("1_5lrcj")

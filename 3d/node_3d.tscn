@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=4 uid="uid://bgsr604tbn4pk"]
 
-[ext_resource type="Texture2D" uid="uid://c04e4j8qt12nx" path="res://PolygonGangWarfare_Texture_01_A.png" id="1_a0tk4"]
+[ext_resource type="Texture2D" uid="uid://c04e4j8qt12nx" path="res://3d/PolygonGangWarfare_Texture_01_A.png" id="1_a0tk4"]
 [ext_resource type="Animation" uid="uid://mown3xc52k40" path="res://animations/A_Idle_Standing_Masc.res" id="2_r3fl7"]
 [ext_resource type="Animation" uid="uid://bxhd7vbhb11is" path="res://animations/A_Walk_F_Masc.res" id="3_jka67"]
 

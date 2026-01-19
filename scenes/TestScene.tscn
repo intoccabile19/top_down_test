@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ouwsw0ym5iyt"]
 
-[ext_resource type="PackedScene" uid="uid://6yr87jnotk48" path="res://2dPlayer.tscn" id="1_mncer"]
-[ext_resource type="PackedScene" uid="uid://duwh76asbuocc" path="res://2dRobot.tscn" id="2_cguwc"]
+[ext_resource type="PackedScene" uid="uid://6yr87jnotk48" path="res://characters/player/2dPlayer.tscn" id="1_mncer"]
+[ext_resource type="PackedScene" uid="uid://duwh76asbuocc" path="res://characters/npc/2dRobot.tscn" id="2_cguwc"]
 
 [sub_resource type="Gradient" id="Gradient_mncer"]
 offsets = PackedFloat32Array(0.038961, 0.363636, 0.74026)
