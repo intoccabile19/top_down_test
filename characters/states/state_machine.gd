@@ -22,9 +22,7 @@ func _physics_process(delta):
 	current_state.physics_update(delta)
 
 func transition_to(new_state_name: String):
-	print(current_state)
 	var new_state = states.get(new_state_name.to_lower())
-	print(new_state)
 	if !new_state or new_state == current_state:
 		return
 		

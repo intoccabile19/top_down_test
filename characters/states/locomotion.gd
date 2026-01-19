@@ -7,10 +7,7 @@ func physics_update(delta):
 	
 	var target_speed = character.SPEED * (character.SPRINT_MULTIPLIER if is_running else 1.0)
 	
-	print(target_speed)
-	
 	if direction != Vector2.ZERO:
-		print(direction)
 		character.velocity = character.velocity.move_toward(direction * target_speed, character.ACCELERATION * delta)
 		
 		# Rotate towards movement direction

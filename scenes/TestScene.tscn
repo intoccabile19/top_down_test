@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://ouwsw0ym5iyt"]
+[gd_scene load_steps=6 format=3 uid="uid://ouwsw0ym5iyt"]
 
 [ext_resource type="PackedScene" uid="uid://6yr87jnotk48" path="res://characters/player/2dPlayer.tscn" id="1_mncer"]
 [ext_resource type="PackedScene" uid="uid://duwh76asbuocc" path="res://characters/npc/2dRobot.tscn" id="2_cguwc"]
+[ext_resource type="PackedScene" uid="uid://bqbex4f3lcjqf" path="res://characters/npc/2dRobot_Bitlytic.tscn" id="3_n77mx"]
 
 [sub_resource type="Gradient" id="Gradient_mncer"]
 offsets = PackedFloat32Array(0.038961, 0.363636, 0.74026)
-colors = PackedColorArray(0.831373, 1, 0.952941, 0.764706, 1, 1, 0.745098, 0.568627, 0, 0, 0, 1)
+colors = PackedColorArray(0.831373, 1, 0.952941, 0.764706, 1, 1, 0.745098, 0.568627, 0, 0, 0, 0.5803922)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cguwc"]
 gradient = SubResource("Gradient_mncer")
@@ -15,6 +16,8 @@ fill_from = Vector2(0.509174, 0.481651)
 [node name="Node2D" type="Node2D"]
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-373, -441)
+scale = Vector2(1.997555, 1.997555)
 color = Color(0.18359, 0.18359, 0.18359, 1)
 polygon = PackedVector2Array(88, 184, 88, 593, 882, 592, 880, 184)
 
@@ -35,8 +38,9 @@ texture = SubResource("GradientTexture2D_cguwc")
 position = Vector2(258, 376)
 scale = Vector2(11.7695, 11.9699)
 shadow_enabled = true
-shadow_filter = 1
+shadow_filter = 2
 texture = SubResource("GradientTexture2D_cguwc")
+texture_scale = 1.97
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(542, 362)
@@ -45,3 +49,9 @@ zoom = Vector2(2.035, 2.035)
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_cguwc")]
 position = Vector2(770, 273)
 rotation = 2.6337
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("3_n77mx")]
+position = Vector2(761, 457)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.40069774, 0.40069774, 0.40069768, 1)

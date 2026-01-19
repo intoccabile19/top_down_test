@@ -1082,3 +1082,5 @@ script = ExtResource("6_bic2t")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 rotation = -1.57079
+
+[node name="Camera2D" type="Camera2D" parent="."]
