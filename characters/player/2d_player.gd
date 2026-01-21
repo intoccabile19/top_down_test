@@ -8,7 +8,14 @@ extends CharacterBody2D
 @export var ACCELERATION = 2000.0
 @export var FRICTION = 2000.0
 
+func _ready() -> void:
+# Wait for the Parent (the Player) to be ready
+	await get_parent().ready
+	animated_sprite.play("idle")
+
 func play_animation(anim_name):
+	if animated_sprite == null:
+		return
 	if animated_sprite.animation != anim_name:
 		animated_sprite.play(anim_name)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=157 format=3 uid="uid://6yr87jnotk48"]
+[gd_scene load_steps=160 format=3 uid="uid://6yr87jnotk48"]
 
 [ext_resource type="Script" uid="uid://btwnji17d0v6l" path="res://characters/player/2d_player.gd" id="1_3g7d7"]
 [ext_resource type="Texture2D" uid="uid://djw2sdkjbl2ph" path="res://sprites/JunkerMale/Junker_Male_Idle.png" id="1_5lrcj"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://chw483mjw1g1y" path="res://characters/states/state_machine.gd" id="5_ghvv0"]
 [ext_resource type="Script" uid="uid://dsb62oev68wda" path="res://characters/states/interact.gd" id="6_bic2t"]
 [ext_resource type="Script" uid="uid://c15unahtvpjq3" path="res://characters/states/locomotion.gd" id="6_q2t3p"]
+[ext_resource type="Script" uid="uid://vklk4euh0e1g" path="res://characters/states/idle.gd" id="9_np68p"]
+[ext_resource type="Script" uid="uid://ssfdttjtt0pm" path="res://characters/states/walk.gd" id="10_y0sqo"]
+[ext_resource type="Script" uid="uid://b1tce26egfahq" path="res://characters/states/run.gd" id="11_0svlp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3g7d7"]
 atlas = ExtResource("1_5lrcj")
@@ -1061,6 +1064,8 @@ script = ExtResource("1_3g7d7")
 rotation = -1.57251
 sprite_frames = SubResource("SpriteFrames_wqj2c")
 animation = &"interact"
+frame = 39
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5idwb")
@@ -1072,13 +1077,22 @@ occluder = SubResource("OccluderPolygon2D_5lrcj")
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_ghvv0")
-initial_state = NodePath("locomotion")
+initial_state = NodePath("idle")
 
 [node name="locomotion" type="Node" parent="state_machine"]
 script = ExtResource("6_q2t3p")
 
 [node name="interact" type="Node" parent="state_machine"]
 script = ExtResource("6_bic2t")
+
+[node name="idle" type="Node" parent="state_machine"]
+script = ExtResource("9_np68p")
+
+[node name="walk" type="Node" parent="state_machine"]
+script = ExtResource("10_y0sqo")
+
+[node name="run" type="Node" parent="state_machine"]
+script = ExtResource("11_0svlp")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 rotation = -1.57079
