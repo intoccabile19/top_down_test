@@ -1,7 +1,7 @@
 extends Node
 class_name Bitlytic_State
 
-signal Transitioned
+#signal Transitioned
 
 func Enter():
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=3 uid="uid://6yr87jnotk48"]
+[gd_scene load_steps=163 format=3 uid="uid://6yr87jnotk48"]
 
 [ext_resource type="Script" uid="uid://btwnji17d0v6l" path="res://characters/player/2d_player.gd" id="1_3g7d7"]
 [ext_resource type="Texture2D" uid="uid://djw2sdkjbl2ph" path="res://sprites/JunkerMale/Junker_Male_Idle.png" id="1_5lrcj"]
@@ -11,6 +11,9 @@
 [ext_resource type="Script" uid="uid://vklk4euh0e1g" path="res://characters/states/idle.gd" id="9_np68p"]
 [ext_resource type="Script" uid="uid://ssfdttjtt0pm" path="res://characters/states/walk.gd" id="10_y0sqo"]
 [ext_resource type="Script" uid="uid://b1tce26egfahq" path="res://characters/states/run.gd" id="11_0svlp"]
+[ext_resource type="Script" uid="uid://g62d0v8pfhe3" path="res://characters/conv_state/conv_state_machine.gd" id="12_uesks"]
+[ext_resource type="Script" uid="uid://d4khxn4bc3agf" path="res://characters/conv_state/not_talk.gd" id="13_ui4s6"]
+[ext_resource type="Script" uid="uid://dcbxavwrt5kn7" path="res://characters/conv_state/walk_talk.gd" id="14_csij6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3g7d7"]
 atlas = ExtResource("1_5lrcj")
@@ -1075,6 +1078,18 @@ shape = SubResource("CircleShape2D_5idwb")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_5lrcj")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = -1.57079
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -66.0
+offset_top = -65.0
+offset_right = 59.0
+offset_bottom = -42.0
+text = "TEXT"
+
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_ghvv0")
 initial_state = NodePath("idle")
@@ -1094,7 +1109,12 @@ script = ExtResource("10_y0sqo")
 [node name="run" type="Node" parent="state_machine"]
 script = ExtResource("11_0svlp")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-rotation = -1.57079
+[node name="conv_state_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("12_uesks")
+initial_state = NodePath("not_talk")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="not_talk" type="Node" parent="conv_state_machine"]
+script = ExtResource("13_ui4s6")
+
+[node name="walk_talk" type="Node" parent="conv_state_machine"]
+script = ExtResource("14_csij6")

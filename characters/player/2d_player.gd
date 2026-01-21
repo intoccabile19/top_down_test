@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var interaction_query: RayCast2D = $RayCast2D # Or Area2D
+@onready var label: Label = $Label
 
 @export var SPEED = 150.0
 @export var SPRINT_MULTIPLIER = 2.0
@@ -33,3 +34,8 @@ func is_sprinting() -> bool:
 	
 func wants_to_interact() -> bool:
 	return Input.is_action_just_pressed("interact")
+
+func update_label(text_to_update: String):
+	print("Label is: ", label)
+	if label:
+		label.text = text_to_update
