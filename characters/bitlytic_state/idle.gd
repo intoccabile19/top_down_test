@@ -3,7 +3,6 @@ class_name idle
 
 @export var enemy : CharacterBody2D
 @export var move_speed:= 100.0
-@onready var nav2d = $"../../NavigationAgent2D"
 
 var move_direction : Vector2
 var wander_time : float
