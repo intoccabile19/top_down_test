@@ -1,5 +1,6 @@
-[gd_scene load_steps=93 format=3 uid="uid://duwh76asbuocc"]
+[gd_scene load_steps=94 format=3 uid="uid://duwh76asbuocc"]
 
+[ext_resource type="Script" uid="uid://cqvhmlc44i43g" path="res://characters/composition/Scripts/talking_component.gd" id="1_na7oy"]
 [ext_resource type="Script" uid="uid://cyqyigjaryox" path="res://characters/npc/2d_robot.gd" id="1_t5vto"]
 [ext_resource type="Texture2D" uid="uid://bgm3pki8i6ame" path="res://sprites/robot/walk/A_Walk_F_Masc_export_A_Walk_F_Masc_0.png" id="2_f8305"]
 [ext_resource type="Texture2D" uid="uid://cw21swhusupp6" path="res://sprites/JunkerMale/Junker_Male_Run.png" id="3_0v4qu"]
@@ -639,3 +640,6 @@ occluder = SubResource("OccluderPolygon2D_5lrcj")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
 texture = SubResource("GradientTexture2D_kjyqc")
+
+[node name="TalkingComponent" type="Node" parent="."]
+script = ExtResource("1_na7oy")

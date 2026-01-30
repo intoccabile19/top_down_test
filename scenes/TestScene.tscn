@@ -51,3 +51,5 @@ color = Color(0.40069774, 0.40069774, 0.40069768, 1)
 
 [node name="CompPlayer" parent="." instance=ExtResource("3_nb1wl")]
 position = Vector2(431, 369)
+
+[editable path="CharacterBody2D"]

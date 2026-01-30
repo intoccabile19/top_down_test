@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://drxmdkht6funi"]
+[gd_scene load_steps=119 format=3 uid="uid://drxmdkht6funi"]
 
 [ext_resource type="Texture2D" uid="uid://djw2sdkjbl2ph" path="res://sprites/JunkerMale/Junker_Male_Idle.png" id="1_hfn4p"]
 [ext_resource type="Script" uid="uid://cunl107pjtna2" path="res://characters/composition/Scenes/comp_player.gd" id="1_ptwmj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dstakeq7krcp7" path="res://characters/composition/Scripts/movement_component.gd" id="4_0idgl"]
 [ext_resource type="Script" uid="uid://bkhjp3xfjli4g" path="res://characters/composition/Scripts/health_component.gd" id="7_x3k6r"]
 [ext_resource type="Script" uid="uid://kljy0u6pv14u" path="res://characters/composition/Scripts/interaction_component.gd" id="8_dtn7p"]
+[ext_resource type="Script" uid="uid://cqvhmlc44i43g" path="res://characters/composition/Scripts/talking_component.gd" id="9_186ee"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qhve"]
 atlas = ExtResource("1_hfn4p")
@@ -809,6 +810,9 @@ metadata/_custom_type_script = "uid://bkhjp3xfjli4g"
 unique_name_in_owner = true
 script = ExtResource("8_dtn7p")
 interaction_source = NodePath("../RayCast2D")
+
+[node name="TalkingComponent" type="Node" parent="."]
+script = ExtResource("9_186ee")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(-10, 17)
