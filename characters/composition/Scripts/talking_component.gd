@@ -1,37 +1,54 @@
 class_name TalkingComponent extends Node
 
-@export var float_height: float = 50.0
-@export var float_duration: float = 1.5
-@export var font_color: Color = Color.WHITE
-@export var outline_color: Color = Color.BLACK
+@export var float_duration: float = 2.0
+@export var timeline: DialogicTimeline
+
+const BUBBLE_SCENE = preload("res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Textbubble/text_bubble.tscn")
+
+var _canvas_layer: CanvasLayer
+
+func _ready() -> void:
+	_canvas_layer = CanvasLayer.new()
+	add_child(_canvas_layer)
+
+func interact() -> void:
+	if timeline:
+		start_timeline(timeline)
 
 func say(text: String) -> void:
-	var label = Label.new()
-	label.text = text
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.add_theme_color_override("font_color", font_color)
-	label.add_theme_color_override("font_outline_color", outline_color)
-	label.add_theme_constant_override("outline_size", 4)
-	
-	# Position slightly above parent if possible
-	var parent = get_parent()
-	if parent is Node2D:
-		label.position = Vector2(-label.size.x / 2, -50) # Initial offset guess, will center after size calc
-		# Add to parent so it follows, or add to generic world/gui layer? 
-		# For simple overhead, adding to parent is easiest.
-		parent.add_child(label)
+	if not BUBBLE_SCENE:
+		printerr("TalkingComponent: Could not load Dialogic Text Bubble scene.")
+		return
 		
-		# Center horizontally after adding (and sizing)
-		label.force_update_transform() # Ensure size is calculated
-		label.position.x = -label.size.x / 2
-		label.position.y = -label.size.y # Move up by its own height
-	else:
-		return # Can't position if parent isn't Node2D
-
-	var tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(label, "position:y", label.position.y - float_height, float_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(label, "modulate:a", 0.0, float_duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	var bubble = BUBBLE_SCENE.instantiate()
+	_canvas_layer.add_child(bubble)
 	
-	await tween.finished
-	label.queue_free()
+	# Configure Bubble
+	bubble.node_to_point_at = get_parent()
+	
+	if bubble.text:
+		bubble.text.text = text
+	
+	# Trigger open animation
+	bubble.open()
+	
+	# Wait and close
+	await get_tree().create_timer(float_duration).timeout
+	
+	if is_instance_valid(bubble):
+		bubble.close()
+		await get_tree().create_timer(0.5).timeout # Wait for close anim
+		if is_instance_valid(bubble):
+			bubble.queue_free()
+
+func start_timeline(timeline_resource: DialogicTimeline) -> void:
+	# Process the timeline to ensure events are loaded
+	timeline_resource.process()
+	
+	for event in timeline_resource.events:
+		if event is DialogicTextEvent:
+			# Parse text using Dialogic to handle variables
+			var parsed_text = DialogicUtil.autoload().Text.parse_text(event.text)
+			await say(parsed_text)
+			# Small buffer between bubbles?
+			await get_tree().create_timer(0.2).timeout

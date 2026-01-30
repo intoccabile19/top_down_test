@@ -20,7 +20,9 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={}
-directories/dtl_directory={}
+directories/dtl_directory={
+"test_basic_dialogue": "res://dialogue/test_basic_dialogue.dtl"
+}
 layout/style_directory={}
 glossary/default_case_sensitive=true
 layout/style_list=[]
