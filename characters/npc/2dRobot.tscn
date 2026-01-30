@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://duwh76asbuocc"]
+[gd_scene load_steps=93 format=3 uid="uid://duwh76asbuocc"]
 
 [ext_resource type="Script" uid="uid://cyqyigjaryox" path="res://characters/npc/2d_robot.gd" id="1_t5vto"]
 [ext_resource type="Texture2D" uid="uid://bgm3pki8i6ame" path="res://sprites/robot/walk/A_Walk_F_Masc_export_A_Walk_F_Masc_0.png" id="2_f8305"]
@@ -611,6 +611,14 @@ radius = 19.0
 cull_mode = 2
 polygon = PackedVector2Array(-9.00241, -12.9983, 2, -15, 10, -12, 15, -2, 9.00204, 10.9983, 0.00222134, 12, -8.99833, 9.00167, -11, 0.00203623)
 
+[sub_resource type="Gradient" id="Gradient_na7oy"]
+colors = PackedColorArray(0.91764706, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kjyqc"]
+gradient = SubResource("Gradient_na7oy")
+fill = 1
+fill_from = Vector2(0.5140187, 0.49532712)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_t5vto")
 
@@ -627,3 +635,7 @@ shape = SubResource("CircleShape2D_5idwb")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 rotation = 0.000185112
 occluder = SubResource("OccluderPolygon2D_5lrcj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+texture = SubResource("GradientTexture2D_kjyqc")

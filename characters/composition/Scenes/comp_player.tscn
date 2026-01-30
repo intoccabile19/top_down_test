@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://drxmdkht6funi"]
+[gd_scene load_steps=118 format=3 uid="uid://drxmdkht6funi"]
 
 [ext_resource type="Texture2D" uid="uid://djw2sdkjbl2ph" path="res://sprites/JunkerMale/Junker_Male_Idle.png" id="1_hfn4p"]
 [ext_resource type="Script" uid="uid://cunl107pjtna2" path="res://characters/composition/Scenes/comp_player.gd" id="1_ptwmj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://khrc2htf3l1e" path="res://sprites/JunkerMale/Junker_Male_Walk.png" id="3_p6n2x"]
 [ext_resource type="Script" uid="uid://dstakeq7krcp7" path="res://characters/composition/Scripts/movement_component.gd" id="4_0idgl"]
 [ext_resource type="Script" uid="uid://bkhjp3xfjli4g" path="res://characters/composition/Scripts/health_component.gd" id="7_x3k6r"]
+[ext_resource type="Script" uid="uid://kljy0u6pv14u" path="res://characters/composition/Scripts/interaction_component.gd" id="8_dtn7p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qhve"]
 atlas = ExtResource("1_hfn4p")
@@ -768,6 +769,8 @@ radius = 17.029387
 cull_mode = 2
 polygon = PackedVector2Array(-10, -13, 2, -15, 10, -12, 15, -2, 9, 13, 0, 15, -11, 11, -16, -1)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_dtn7p"]
+
 [node name="CompPlayer" type="CharacterBody2D"]
 script = ExtResource("1_ptwmj")
 
@@ -801,3 +804,19 @@ metadata/_custom_type_script = "uid://dstakeq7krcp7"
 unique_name_in_owner = true
 script = ExtResource("7_x3k6r")
 metadata/_custom_type_script = "uid://bkhjp3xfjli4g"
+
+[node name="InteractionComponent" type="Node" parent="." node_paths=PackedStringArray("interaction_source")]
+unique_name_in_owner = true
+script = ExtResource("8_dtn7p")
+interaction_source = NodePath("../RayCast2D")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-10, 17)
+rotation = -1.5707964
+color = Color(1, 0.019607844, 0.039215688, 1)
+texture = SubResource("CanvasTexture_dtn7p")
+polygon = PackedVector2Array(16.999998, 60, 13.999998, 54, 19.999998, 54)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = -1.5707964
+collide_with_areas = true
