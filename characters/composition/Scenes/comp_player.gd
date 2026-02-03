@@ -4,6 +4,7 @@ class_name CompPlayer extends CharacterBody2D
 @onready var movement_component: MovementComponent = %MovementComponent
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var interaction_component: InteractionComponent = %InteractionComponent
+@onready var carrier_component: CarrierComponent = $CarrierComponent
 
 func _ready() -> void:
 	health_component.died.connect(_on_died)

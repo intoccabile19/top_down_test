@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://kljy0u6pv14u" path="res://characters/composition/Scripts/interaction_component.gd" id="8_dtn7p"]
 [ext_resource type="Script" uid="uid://cqvhmlc44i43g" path="res://characters/composition/Scripts/talking_component.gd" id="9_186ee"]
 [ext_resource type="Resource" uid="uid://dugxqaxe1fqsk" path="res://dialogue/test_basic_dialogue.dtl" id="10_kveuh"]
+[ext_resource type="Script" path="res://characters/composition/Scripts/CarrierComponent.gd" id="11_carrier"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qhve"]
 atlas = ExtResource("1_hfn4p")
@@ -826,3 +827,10 @@ polygon = PackedVector2Array(16.999998, 60, 13.999998, 54, 19.999998, 54)
 [node name="RayCast2D" type="RayCast2D" parent="."]
 rotation = -1.5707964
 collide_with_areas = true
+
+[node name="CarrierComponent" type="Node2D" parent="." node_paths=PackedStringArray("hold_point")]
+script = ExtResource("11_carrier")
+hold_point = NodePath("HoldPoint")
+
+[node name="HoldPoint" type="Node2D" parent="CarrierComponent"]
+position = Vector2(0, -20)

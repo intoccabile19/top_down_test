@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwkf2i5su00xw"]
+
+[ext_resource type="Script" path="res://characters/composition/Scripts/interaction_component.gd" id="1_interact"]
+[ext_resource type="Script" path="res://objects/components/PickupableComponent.gd" id="2_pickup"]
+[ext_resource type="Script" path="res://objects/components/PowerSourceComponent.gd" id="3_power"]
+[ext_resource type="Script" path="res://objects/BatteryItem.gd" id="4_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bat"]
+size = Vector2(16, 24)
+
+[node name="BatteryItem" type="StaticBody2D" groups=["battery"]]
+script = ExtResource("4_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bat")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Body" type="ColorRect" parent="Visuals"]
+offset_left = -8.0
+offset_top = -12.0
+offset_right = 8.0
+offset_bottom = 12.0
+color = Color(0.2, 0.8, 0.2, 1.0)
+
+[node name="Cap" type="ColorRect" parent="Visuals"]
+offset_left = -4.0
+offset_top = -16.0
+offset_right = 4.0
+offset_bottom = -12.0
+color = Color(0.6, 0.6, 0.6, 1.0)
+
+[node name="InteractionComponent" type="Node" parent="." node_paths=PackedStringArray("interaction_source")]
+script = ExtResource("1_interact")
+interaction_source = null
+
+[node name="PickupableComponent" type="Node" parent="." node_paths=PackedStringArray("object_root")]
+script = ExtResource("2_pickup")
+object_root = NodePath("..")
+
+[node name="PowerSourceComponent" type="Node" parent="."]
+script = ExtResource("3_power")
+max_charge = 100.0

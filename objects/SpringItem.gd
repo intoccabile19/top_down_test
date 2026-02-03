@@ -2,7 +2,7 @@ extends StaticBody2D
 
 @onready var spring_component: SpringPushComponent = $SpringPushComponent
 
-func start_interact() -> void:
+func start_interact(_user = null) -> void:
 	if spring_component:
 		spring_component.start_interact()
 

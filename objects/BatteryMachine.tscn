@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://c66gpbqf3mmtk"]
+
+[ext_resource type="Script" path="res://characters/composition/Scripts/interaction_component.gd" id="1_interact"]
+[ext_resource type="Script" path="res://objects/components/ItemReceiverComponent.gd" id="2_receiver"]
+[ext_resource type="Script" path="res://objects/components/PowerConsumerComponent.gd" id="3_consumer"]
+[ext_resource type="Script" path="res://objects/components/SwitchComponent.gd" id="4_switch"]
+[ext_resource type="Script" path="res://objects/BatteryMachine.gd" id="5_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_machine"]
+size = Vector2(48, 48)
+
+[node name="BatteryMachine" type="StaticBody2D"]
+script = ExtResource("5_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_machine")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Base" type="ColorRect" parent="Visuals"]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+color = Color(0.3, 0.3, 0.3, 1.0)
+
+[node name="Slot" type="ColorRect" parent="Visuals"]
+offset_left = -10.0
+offset_top = -14.0
+offset_right = 10.0
+offset_bottom = 14.0
+color = Color(0.1, 0.1, 0.1, 1.0)
+
+[node name="Indicator" type="ColorRect" parent="Visuals"]
+offset_left = -20.0
+offset_top = 16.0
+offset_right = -12.0
+offset_bottom = 20.0
+color = Color(0.2, 0.0, 0.0, 1.0)
+
+[node name="InteractionComponent" type="Node" parent="." node_paths=PackedStringArray("interaction_source")]
+script = ExtResource("1_interact")
+interaction_source = null
+
+[node name="ItemReceiverComponent" type="Node2D" parent="." node_paths=PackedStringArray("visual_socket")]
+script = ExtResource("2_receiver")
+visual_socket = NodePath("../Visuals/Slot")
+
+[node name="PowerConsumerComponent" type="Node" parent="."]
+script = ExtResource("3_consumer")
+drain_rate = 5.0
+
+[node name="SwitchComponent" type="Node" parent="."]
+script = ExtResource("4_switch")
