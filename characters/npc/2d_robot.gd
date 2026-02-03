@@ -11,6 +11,5 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func interact():
-	print("INTERACTION WORKED")
 	if talking_component:
 		talking_component.start_timeline(TEST_BASIC_DIALOGUE)

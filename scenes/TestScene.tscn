@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ouwsw0ym5iyt"]
+[gd_scene load_steps=7 format=3 uid="uid://ouwsw0ym5iyt"]
 
 [ext_resource type="PackedScene" uid="uid://duwh76asbuocc" path="res://characters/npc/2dRobot.tscn" id="2_cguwc"]
 [ext_resource type="PackedScene" uid="uid://bqbex4f3lcjqf" path="res://characters/npc/2dRobot_Bitlytic.tscn" id="3_n77mx"]
 [ext_resource type="PackedScene" uid="uid://drxmdkht6funi" path="res://characters/composition/Scenes/comp_player.tscn" id="3_nb1wl"]
+[ext_resource type="PackedScene" uid="uid://bjdyr2j4k1wrg" path="res://objects/SpringItem.tscn" id="4_nb1wl"]
 
 [sub_resource type="Gradient" id="Gradient_mncer"]
 offsets = PackedFloat32Array(0.038961, 0.363636, 0.74026)
@@ -51,3 +52,11 @@ color = Color(0.40069774, 0.40069774, 0.40069768, 1)
 
 [node name="CompPlayer" parent="." instance=ExtResource("3_nb1wl")]
 position = Vector2(431, 369)
+
+[node name="SpringItem" parent="." instance=ExtResource("4_nb1wl")]
+position = Vector2(547, 235)
+
+[node name="SpringPushComponent" parent="SpringItem" index="3"]
+max_push_distance = 64.0
+
+[editable path="SpringItem"]

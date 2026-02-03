@@ -25,8 +25,13 @@ func _physics_process(delta: float) -> void:
 		health_component.heal(10)
 
 	#handle interaction
+	#handle interaction
 	if input_component.interact_pressed:
-		interaction_component.interact()
+		interaction_component.start_interact()
+	elif input_component.interact_held:
+		interaction_component.process_interact(delta)
+	elif input_component.interact_released:
+		interaction_component.stop_interact()
 		
 func _on_died() -> void:
 	print("player died")
