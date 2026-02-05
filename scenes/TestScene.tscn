@@ -70,4 +70,8 @@ position = Vector2(-407, 71)
 [node name="BatteryItem2" parent="SpringItem" instance=ExtResource("5_fws1a")]
 position = Vector2(-357, 215)
 
+[node name="PickupableComponent" parent="SpringItem/BatteryItem2" index="3"]
+weight = 5.0
+
 [editable path="SpringItem"]
+[editable path="SpringItem/BatteryItem2"]

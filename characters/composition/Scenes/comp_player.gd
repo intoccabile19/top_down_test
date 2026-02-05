@@ -8,6 +8,11 @@ class_name CompPlayer extends CharacterBody2D
 
 func _ready() -> void:
 	health_component.died.connect(_on_died)
+	carrier_component.on_weight_changed.connect(_on_carrier_weight_changed)
+
+func _on_carrier_weight_changed(weight: float) -> void:
+	# Formula: 1.0 - (weight * 0.1), min 0.2
+	movement_component.speed_scale = max(0.2, 1.0 - (weight * 0.1))
 
 func _physics_process(delta: float) -> void:
 	#Read Input Controls

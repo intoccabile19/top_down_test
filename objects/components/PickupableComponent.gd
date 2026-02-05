@@ -1,6 +1,7 @@
 class_name PickupableComponent extends Node
 
 @export var object_root: Node2D
+@export var weight: float = 1.0
 
 func start_interact() -> void:
 	pass

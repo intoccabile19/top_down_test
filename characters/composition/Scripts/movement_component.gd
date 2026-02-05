@@ -6,6 +6,8 @@ class_name MovementComponent extends Node
 @export var speed_mult := 2.0
 @export var acceleration := 2000
 
+@export var speed_scale: float = 1.0
+
 var direction: Vector2 = Vector2.ZERO
 var is_running := false
 
@@ -13,7 +15,7 @@ func tick(delta: float) -> void:
 	if body == null:
 		return
 	
-	var target_speed = speed * (speed_mult if is_running else 1.0)
+	var target_speed = speed * (speed_mult if is_running else 1.0) * speed_scale
 	
 	if direction != Vector2.ZERO:
 		#Move on x and z plane

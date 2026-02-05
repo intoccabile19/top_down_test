@@ -3,7 +3,10 @@ class_name CarrierComponent extends Node2D
 @export var hold_point: Node2D
 @export var drop_distance: float = 50.0
 
+signal on_weight_changed(weight)
+
 var carried_object: Node2D = null
+var current_weight: float = 0.0
 
 func _ready() -> void:
 	if not hold_point:
@@ -24,6 +27,17 @@ func pickup(object: Node2D) -> void:
 	object.rotation = 0
 	carried_object = object
 	
+	# Handle Weight
+	current_weight = 0.0
+	# Try to find PickupableComponent on the object or its children
+	# Simplest way: Check if object has 'pickup_component' property or find child
+	# Current BatteryItem has $PickupableComponent.
+	var pickup_comp = object.get_node_or_null("PickupableComponent")
+	if pickup_comp and "weight" in pickup_comp:
+		current_weight = pickup_comp.weight
+		
+	on_weight_changed.emit(current_weight)
+	
 	# Disable physics if applicable
 	if object is CollisionObject2D:
 		object.process_mode = Node.PROCESS_MODE_DISABLED
@@ -33,6 +47,11 @@ func drop() -> void:
 		return
 		
 	var object = carried_object
+	
+	# Reset Weight
+	current_weight = 0.0
+	on_weight_changed.emit(0.0)
+	
 	hold_point.remove_child(object)
 	
 	# Re-add to main scene (usually the parent of the character, or a specific container)
