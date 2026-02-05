@@ -3,13 +3,18 @@ class_name PickupableComponent extends Node
 @export var object_root: Node2D
 
 func start_interact() -> void:
-    # This will be called by interaction component
-    # We need to find who interacted. 
-    # Current interaction system emits 'target' but the caller is the player.
-    # The player calls 'start_interact' on THIS object.
-    # We need a way to reference the interact-er.
-    pass
-    
-func interact_with_carrier(carrier: CarrierComponent) -> void:
-    if carrier and not carrier.is_carrying():
-        carrier.pickup(object_root)
+	pass
+	
+func interact_with_carrier(carrier: CarrierComponent) -> bool:
+	if carrier and not carrier.is_carrying():
+		carrier.pickup(object_root)
+		return true
+	return false
+
+func try_pickup(user: Node) -> bool:
+	var carrier = user.get_node_or_null("CarrierComponent")
+	# If 'CarrierComponent' is not the exact name, this might fail, but consistent with existing code.
+	# Safe to assume standard naming for now based on user context.
+	if carrier:
+		return interact_with_carrier(carrier)
+	return false

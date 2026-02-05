@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bqbex4f3lcjqf" path="res://characters/npc/2dRobot_Bitlytic.tscn" id="3_n77mx"]
 [ext_resource type="PackedScene" uid="uid://drxmdkht6funi" path="res://characters/composition/Scenes/comp_player.tscn" id="3_nb1wl"]
 [ext_resource type="PackedScene" uid="uid://bjdyr2j4k1wrg" path="res://objects/SpringItem.tscn" id="4_nb1wl"]
-[ext_resource type="PackedScene" path="res://objects/BatteryItem.tscn" id="5_fws1a"]
-[ext_resource type="PackedScene" path="res://objects/BatteryMachine.tscn" id="6_xpysu"]
+[ext_resource type="PackedScene" uid="uid://dwkf2i5su00xw" path="res://objects/BatteryItem.tscn" id="5_fws1a"]
+[ext_resource type="PackedScene" uid="uid://c66gpbqf3mmtk" path="res://objects/BatteryMachine.tscn" id="6_xpysu"]
 
 [sub_resource type="Gradient" id="Gradient_mncer"]
 offsets = PackedFloat32Array(0.038961, 0.363636, 0.74026)

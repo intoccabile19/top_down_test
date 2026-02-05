@@ -26,11 +26,8 @@ func start_interact(user: Node) -> void:
 	var carrier = user.get_node_or_null("CarrierComponent")
 	
 	# Priority 1: Insert Battery if holding one
-	if carrier and carrier.is_carrying():
-		var item = carrier.get_carried_object()
-		if receiver.insert_item(item):
-			carrier.carried_object = null 
-			return
+	if receiver.try_insert_from(user):
+		return
 	
 	# Priority 2: Toggle Switch if loaded
 	if receiver.has_item():
@@ -45,15 +42,11 @@ func process_interact_logic(delta: float, user: Node) -> void:
 		
 	user_holding_interact_for += delta
 	if user_holding_interact_for > 0.5: # 0.5 sec hold to remove
-		var carrier = user.get_node_or_null("CarrierComponent")
-		if carrier and not carrier.is_carrying():
-			var item = receiver.remove_item()
-			if item:
-				carrier.pickup(item)
-				user_holding_interact_for = 0.0
-				# Turn off
-				switch_comp.set_state(false)
-				update_consumer_state()
+		if receiver.try_take_by(user):
+			user_holding_interact_for = 0.0
+			# Turn off
+			switch_comp.set_state(false)
+			update_consumer_state()
 
 func process_interact(delta: float) -> void:
 	if current_interactor:

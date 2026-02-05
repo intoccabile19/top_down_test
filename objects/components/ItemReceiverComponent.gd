@@ -43,3 +43,36 @@ func remove_item() -> Node2D:
 	
 	on_item_removed.emit(item)
 	return item
+
+func try_insert_from(user: Node) -> bool:
+	var carrier = user.get_node_or_null("CarrierComponent")
+	if not carrier:
+		return false
+	
+	if not carrier.is_carrying():
+		return false
+		
+	var item = carrier.get_carried_object()
+	if insert_item(item):
+		carrier.carried_object = null
+		return true
+	
+	return false
+
+func try_take_by(user: Node) -> bool:
+	if not has_item():
+		return false
+		
+	var carrier = user.get_node_or_null("CarrierComponent")
+	if not carrier:
+		return false
+		
+	if carrier.is_carrying():
+		return false
+		
+	var item = remove_item()
+	if item:
+		carrier.pickup(item)
+		return true
+		
+	return false
