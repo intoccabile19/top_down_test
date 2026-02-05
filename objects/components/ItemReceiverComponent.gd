@@ -54,7 +54,8 @@ func try_insert_from(user: Node) -> bool:
 		
 	var item = carrier.get_carried_object()
 	if insert_item(item):
-		carrier.carried_object = null
+		# Correctly remove from carrier
+		carrier.give_object()
 		return true
 	
 	return false

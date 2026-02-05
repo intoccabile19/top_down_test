@@ -42,6 +42,25 @@ func pickup(object: Node2D) -> void:
 	if object is CollisionObject2D:
 		object.process_mode = Node.PROCESS_MODE_DISABLED
 
+func give_object() -> Node2D:
+	if not is_carrying():
+		return null
+		
+	var object = carried_object
+	carried_object = null
+	
+	# Reset Weight
+	current_weight = 0.0
+	on_weight_changed.emit(0.0)
+	
+	# We do NOT reparent here, as the receiver is expected to do it immediately.
+	# But we should remove it from our hold point to be clean, or let Reparenting handle it?
+	# Godot reparenting handles removal from old parent.
+	# However, if we just return it, it's still child of hold_point until receiver reparents.
+	# That is fine.
+	
+	return object
+
 func drop() -> void:
 	if not is_carrying():
 		return
