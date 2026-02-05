@@ -67,4 +67,7 @@ position = Vector2(-377, -112)
 [node name="BatteryMachine" parent="SpringItem" instance=ExtResource("6_xpysu")]
 position = Vector2(-407, 71)
 
+[node name="BatteryItem2" parent="SpringItem" instance=ExtResource("5_fws1a")]
+position = Vector2(-357, 215)
+
 [editable path="SpringItem"]

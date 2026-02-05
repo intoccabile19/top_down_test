@@ -37,8 +37,17 @@ func start_interact() -> void:
 		elif target.has_method("interact"):
 			target.interact()
 			on_interact.emit(target)
+		else:
+			# Target exists but has no interact methods
+			_try_drop()
 	else:
 		current_target = null
+		_try_drop()
+
+func _try_drop() -> void:
+	var carrier = get_parent().get_node_or_null("CarrierComponent")
+	if carrier:
+		carrier.drop()
 
 func process_interact(delta: float) -> void:
 	if is_instance_valid(current_target) and current_target.has_method("process_interact"):

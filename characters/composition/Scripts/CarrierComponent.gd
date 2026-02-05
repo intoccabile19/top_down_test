@@ -1,6 +1,7 @@
 class_name CarrierComponent extends Node2D
 
 @export var hold_point: Node2D
+@export var drop_distance: float = 50.0
 
 var carried_object: Node2D = null
 
@@ -37,7 +38,10 @@ func drop() -> void:
 	# Re-add to main scene (usually the parent of the character, or a specific container)
 	# For now, adding to the character's parent (the world)
 	get_owner().get_parent().add_child(object)
-	object.global_position = global_position
+	
+	# Calculate drop position interact front of the character
+	var drop_vector = Vector2.RIGHT.rotated(get_owner().global_rotation)
+	object.global_position = global_position + (drop_vector * drop_distance)
 	
 	# Re-enable physics
 	if object is CollisionObject2D:
