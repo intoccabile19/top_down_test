@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ouwsw0ym5iyt"]
+[gd_scene load_steps=10 format=3 uid="uid://ouwsw0ym5iyt"]
 
 [ext_resource type="PackedScene" uid="uid://duwh76asbuocc" path="res://characters/npc/2dRobot.tscn" id="2_cguwc"]
 [ext_resource type="PackedScene" uid="uid://bqbex4f3lcjqf" path="res://characters/npc/2dRobot_Bitlytic.tscn" id="3_n77mx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjdyr2j4k1wrg" path="res://objects/SpringItem.tscn" id="4_nb1wl"]
 [ext_resource type="PackedScene" uid="uid://dwkf2i5su00xw" path="res://objects/BatteryItem.tscn" id="5_fws1a"]
 [ext_resource type="PackedScene" uid="uid://c66gpbqf3mmtk" path="res://objects/BatteryMachine.tscn" id="6_xpysu"]
+[ext_resource type="PackedScene" path="res://objects/BatteryCharger.tscn" id="7_xpysu"]
 
 [sub_resource type="Gradient" id="Gradient_mncer"]
 offsets = PackedFloat32Array(0.038961, 0.363636, 0.74026)
@@ -72,6 +73,9 @@ position = Vector2(-357, 215)
 
 [node name="PickupableComponent" parent="SpringItem/BatteryItem2" index="3"]
 weight = 5.0
+
+[node name="BatteryCharger" parent="SpringItem" instance=ExtResource("7_xpysu")]
+position = Vector2(-16, 242)
 
 [editable path="SpringItem"]
 [editable path="SpringItem/BatteryItem2"]

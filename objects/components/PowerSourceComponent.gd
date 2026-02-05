@@ -21,3 +21,10 @@ func drain(amount: float) -> float:
 		on_depleted.emit()
 		
 	return drained
+
+func add_charge(amount: float) -> float:
+	var missing = max_charge - current_charge
+	var added = min(missing, amount)
+	current_charge += added
+	on_charge_changed.emit(current_charge, max_charge)
+	return added

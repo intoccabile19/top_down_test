@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://charger12345"]
+
+[ext_resource type="Script" path="res://objects/components/ItemReceiverComponent.gd" id="1_receiver"]
+[ext_resource type="Script" path="res://objects/components/PowerChargerComponent.gd" id="2_charger"]
+[ext_resource type="Script" path="res://objects/BatteryCharger.gd" id="3_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_charger"]
+size = Vector2(40, 40)
+
+[node name="BatteryCharger" type="StaticBody2D"]
+script = ExtResource("3_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_charger")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Base" type="ColorRect" parent="Visuals"]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.3, 0.3, 0.5, 1.0)
+
+[node name="Slot" type="ColorRect" parent="Visuals"]
+offset_left = -10.0
+offset_top = -14.0
+offset_right = 10.0
+offset_bottom = 14.0
+color = Color(0.1, 0.1, 0.2, 1.0)
+
+[node name="Indicator" type="ColorRect" parent="Visuals"]
+offset_left = -18.0
+offset_top = 14.0
+offset_right = -10.0
+offset_bottom = 18.0
+color = Color(0.1, 0.1, 1.0, 1.0)
+
+[node name="ItemReceiverComponent" type="Node2D" parent="." node_paths=PackedStringArray("visual_socket")]
+script = ExtResource("1_receiver")
+visual_socket = NodePath("../Visuals/Slot")
+
+[node name="PowerChargerComponent" type="Node" parent="."]
+script = ExtResource("2_charger")
+charge_rate = 20.0
