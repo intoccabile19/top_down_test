@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ouwsw0ym5iyt"]
+[gd_scene load_steps=12 format=3 uid="uid://ouwsw0ym5iyt"]
 
 [ext_resource type="PackedScene" uid="uid://duwh76asbuocc" path="res://characters/npc/2dRobot.tscn" id="2_cguwc"]
 [ext_resource type="PackedScene" uid="uid://bqbex4f3lcjqf" path="res://characters/npc/2dRobot_Bitlytic.tscn" id="3_n77mx"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bjdyr2j4k1wrg" path="res://objects/SpringItem.tscn" id="4_nb1wl"]
 [ext_resource type="PackedScene" uid="uid://dwkf2i5su00xw" path="res://objects/BatteryItem.tscn" id="5_fws1a"]
 [ext_resource type="PackedScene" uid="uid://c66gpbqf3mmtk" path="res://objects/BatteryMachine.tscn" id="6_xpysu"]
-[ext_resource type="PackedScene" path="res://objects/BatteryCharger.tscn" id="7_xpysu"]
+[ext_resource type="PackedScene" uid="uid://charger12345" path="res://objects/BatteryCharger.tscn" id="7_xpysu"]
+[ext_resource type="PackedScene" uid="uid://jt6rsbesitvv" path="res://objects/CrankItem.tscn" id="8_epq12"]
+[ext_resource type="PackedScene" uid="uid://jvbn1g40jq8c" path="res://objects/HeavyBlock.tscn" id="9_u6bnu"]
 
 [sub_resource type="Gradient" id="Gradient_mncer"]
 offsets = PackedFloat32Array(0.038961, 0.363636, 0.74026)
@@ -76,6 +78,12 @@ weight = 5.0
 
 [node name="BatteryCharger" parent="SpringItem" instance=ExtResource("7_xpysu")]
 position = Vector2(-16, 242)
+
+[node name="CrankItem" parent="." instance=ExtResource("8_epq12")]
+position = Vector2(357, 164)
+
+[node name="HeavyBlock" parent="." instance=ExtResource("9_u6bnu")]
+position = Vector2(339, 575)
 
 [editable path="SpringItem"]
 [editable path="SpringItem/BatteryItem2"]
