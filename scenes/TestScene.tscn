@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://ouwsw0ym5iyt"]
+[gd_scene load_steps=13 format=3 uid="uid://ouwsw0ym5iyt"]
 
+[ext_resource type="PackedScene" uid="uid://q4gij7kgr3tn" path="res://objects/PlayerShip.tscn" id="1_yhikq"]
 [ext_resource type="PackedScene" uid="uid://duwh76asbuocc" path="res://characters/npc/2dRobot.tscn" id="2_cguwc"]
 [ext_resource type="PackedScene" uid="uid://bqbex4f3lcjqf" path="res://characters/npc/2dRobot_Bitlytic.tscn" id="3_n77mx"]
 [ext_resource type="PackedScene" uid="uid://drxmdkht6funi" path="res://characters/composition/Scenes/comp_player.tscn" id="3_nb1wl"]
@@ -21,7 +22,11 @@ fill_from = Vector2(0.509174, 0.481651)
 
 [node name="Node2D" type="Node2D"]
 
+[node name="PlayerShip" parent="." instance=ExtResource("1_yhikq")]
+position = Vector2(7, 7)
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 position = Vector2(-373, -441)
 scale = Vector2(1.997555, 1.997555)
 color = Color(0.18359, 0.18359, 0.18359, 1)
@@ -46,44 +51,44 @@ texture = SubResource("GradientTexture2D_cguwc")
 texture_scale = 1.97
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_cguwc")]
-position = Vector2(770, 273)
+position = Vector2(466, 49)
 rotation = 2.6337
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("3_n77mx")]
-position = Vector2(761, 457)
+position = Vector2(423, 241)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.40069774, 0.40069774, 0.40069768, 1)
 
 [node name="CompPlayer" parent="." instance=ExtResource("3_nb1wl")]
-position = Vector2(431, 369)
+position = Vector2(273, 151)
 
 [node name="SpringItem" parent="." instance=ExtResource("4_nb1wl")]
-position = Vector2(547, 235)
+position = Vector2(198, 53)
 
 [node name="SpringPushComponent" parent="SpringItem" index="3"]
 max_push_distance = 64.0
 
 [node name="CrankItem" parent="." instance=ExtResource("8_epq12")]
-position = Vector2(357, 164)
+position = Vector2(519, 301)
 
 [node name="HeavyBlock" parent="." instance=ExtResource("9_u6bnu")]
-position = Vector2(339, 575)
+position = Vector2(310, 283)
 
 [node name="BatteryItem" parent="." instance=ExtResource("5_fws1a")]
-position = Vector2(170, 123)
+position = Vector2(82, 52)
 
 [node name="BatteryMachine" parent="." instance=ExtResource("6_xpysu")]
-position = Vector2(140, 306)
+position = Vector2(59, 301)
 
 [node name="BatteryItem2" parent="." instance=ExtResource("5_fws1a")]
-position = Vector2(190, 450)
+position = Vector2(45, 51)
 
 [node name="PickupableComponent" parent="BatteryItem2" index="3"]
 weight = 5.0
 
 [node name="BatteryCharger" parent="." instance=ExtResource("7_xpysu")]
-position = Vector2(531, 477)
+position = Vector2(206, 306)
 
 [editable path="SpringItem"]
 [editable path="BatteryItem2"]

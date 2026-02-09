@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://q4gij7kgr3tn"]
+
+[ext_resource type="Script" uid="uid://6qh8gn1ouitw" path="res://objects/Ship.gd" id="1_a2joy"]
+[ext_resource type="Script" uid="uid://b3etby0v0pvgg" path="res://objects/components/ShipGravityComponent.gd" id="2_8dji6"]
+[ext_resource type="PackedScene" uid="uid://fwegv1mqjmmh" path="res://objects/Helm.tscn" id="2_one7x"]
+[ext_resource type="Script" uid="uid://drvvxffdvotv0" path="res://objects/components/ShipMovementComponent.gd" id="3_one7x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gff64"]
+size = Vector2(595, 339)
+
+[node name="PlayerShip" type="CharacterBody2D"]
+script = ExtResource("1_a2joy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 597.0
+offset_bottom = 342.0
+color = Color(0.4351923, 0.43519226, 0.43519226, 1)
+
+[node name="Helm" parent="." node_paths=PackedStringArray("ship_movement_component") instance=ExtResource("2_one7x")]
+position = Vector2(545, 118)
+ship_movement_component = NodePath("../ShipMovementComponent")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(597, 0, 597, 342, -1, 341, 0, 0, 588, 0, 588, 2, 1, 1, 2, 336, 594, 338, 593, 0)
+
+[node name="GravityArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityArea"]
+position = Vector2(297.5, 170.5)
+shape = SubResource("RectangleShape2D_gff64")
+
+[node name="ShipGravityComponent" type="Node" parent="." node_paths=PackedStringArray("gravity_area")]
+script = ExtResource("2_8dji6")
+gravity_area = NodePath("../GravityArea")
+
+[node name="ShipMovementComponent" type="Node" parent="." node_paths=PackedStringArray("ship_body")]
+script = ExtResource("3_one7x")
+ship_body = NodePath("..")
