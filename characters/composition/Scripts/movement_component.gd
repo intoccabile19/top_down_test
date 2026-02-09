@@ -22,7 +22,7 @@ func tick(delta: float) -> void:
 		body.velocity = body.velocity.move_toward(direction * target_speed, acceleration * delta)
 			
 		# Rotate towards movement direction
-		body.rotation = lerp_angle(body.rotation, direction.angle(), 0.15)
+		body.global_rotation = lerp_angle(body.global_rotation, direction.angle(), 0.15)
 		if is_running:
 			sprite.play("run")
 		else:
