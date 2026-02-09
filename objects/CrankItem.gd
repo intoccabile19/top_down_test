@@ -8,7 +8,7 @@ func _ready() -> void:
 		crank_component.on_crank_update.connect(_on_crank_update)
 		crank_component.on_crank_complete.connect(_on_crank_complete)
 
-func _on_crank_update(total_val: float, progress: float) -> void:
+func _on_crank_update(_total_val: float, progress: float) -> void:
 	if label:
 		label.text = "Crank: %.0f%%" % (progress * 100)
 	# Can also drive other things here, e.g. a gate opening

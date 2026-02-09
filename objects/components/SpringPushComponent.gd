@@ -40,7 +40,7 @@ func start_interact() -> void:
 	# Resetting feels more "controlled" for a push.
 	velocity = 0.0 
 
-func process_interact(delta: float) -> void:
+func process_interact(_delta: float) -> void:
 	# Taking delta here if needed, but managing state in _physics_process 
 	# allows for consistent spring physics in one place.
 	pass

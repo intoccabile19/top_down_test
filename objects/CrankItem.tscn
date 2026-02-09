@@ -34,3 +34,9 @@ color = Color(0, 0, 1, 1)
 [node name="CrankComponent" type="Node2D" parent="." node_paths=PackedStringArray("target_visual_node")]
 script = ExtResource("2_g4m3x")
 target_visual_node = NodePath("../HandleVisuals")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -39.0
+offset_right = 20.0
+offset_bottom = -16.0

@@ -64,26 +64,26 @@ position = Vector2(547, 235)
 [node name="SpringPushComponent" parent="SpringItem" index="3"]
 max_push_distance = 64.0
 
-[node name="BatteryItem" parent="SpringItem" instance=ExtResource("5_fws1a")]
-position = Vector2(-377, -112)
-
-[node name="BatteryMachine" parent="SpringItem" instance=ExtResource("6_xpysu")]
-position = Vector2(-407, 71)
-
-[node name="BatteryItem2" parent="SpringItem" instance=ExtResource("5_fws1a")]
-position = Vector2(-357, 215)
-
-[node name="PickupableComponent" parent="SpringItem/BatteryItem2" index="3"]
-weight = 5.0
-
-[node name="BatteryCharger" parent="SpringItem" instance=ExtResource("7_xpysu")]
-position = Vector2(-16, 242)
-
 [node name="CrankItem" parent="." instance=ExtResource("8_epq12")]
 position = Vector2(357, 164)
 
 [node name="HeavyBlock" parent="." instance=ExtResource("9_u6bnu")]
 position = Vector2(339, 575)
 
+[node name="BatteryItem" parent="." instance=ExtResource("5_fws1a")]
+position = Vector2(170, 123)
+
+[node name="BatteryMachine" parent="." instance=ExtResource("6_xpysu")]
+position = Vector2(140, 306)
+
+[node name="BatteryItem2" parent="." instance=ExtResource("5_fws1a")]
+position = Vector2(190, 450)
+
+[node name="PickupableComponent" parent="BatteryItem2" index="3"]
+weight = 5.0
+
+[node name="BatteryCharger" parent="." instance=ExtResource("7_xpysu")]
+position = Vector2(531, 477)
+
 [editable path="SpringItem"]
-[editable path="SpringItem/BatteryItem2"]
+[editable path="BatteryItem2"]

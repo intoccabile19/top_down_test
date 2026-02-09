@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 
 func start_interact(user: Node) -> void:
 	current_interactor = user
-	var carrier = user.get_node_or_null("CarrierComponent")
+	var _carrier = user.get_node_or_null("CarrierComponent")
 	
 	# Priority 1: Insert Battery if holding one
 	if receiver.try_insert_from(user):
