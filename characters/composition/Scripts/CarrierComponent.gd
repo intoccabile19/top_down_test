@@ -19,9 +19,16 @@ func pickup(object: Node2D) -> void:
 	if is_carrying():
 		return
 	
+	# Disable physics BEFORE anything else.
+	# This triggers body_exited signals on the GravityArea, so the body MUST be disabled 
+	# effectively immediately so the gravity component knows to ignore it.
+	if object is CollisionObject2D:
+		object.process_mode = Node.PROCESS_MODE_DISABLED
+	
 	# Reparent object to hold point
 	if object.get_parent():
 		object.get_parent().remove_child(object)
+
 	hold_point.add_child(object)
 	object.position = Vector2.ZERO
 	object.rotation = 0
@@ -37,10 +44,14 @@ func pickup(object: Node2D) -> void:
 		current_weight = pickup_comp.weight
 		
 	on_weight_changed.emit(current_weight)
-	
-	# Disable physics if applicable
-	if object is CollisionObject2D:
-		object.process_mode = Node.PROCESS_MODE_DISABLED
+		
+	# print("DEBUG: Pickup complete. Object parent: ", object.get_parent().name, " Position: ", object.position)
+
+# func _process(delta: float) -> void:
+# 	if is_carrying():
+# 		# DEBUG: Force position reset to ensure it stays pinned
+# 		carried_object.position = Vector2.ZERO
+# 		# print("DEBUG: Carried Object Global Pos: ", carried_object.global_position, " Hold Point Global: ", hold_point.global_position)
 
 func give_object() -> Node2D:
 	if not is_carrying():
