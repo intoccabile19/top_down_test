@@ -5,21 +5,44 @@ extends StaticBody2D
 @onready var switch_comp: SwitchComponent = $SwitchComponent
 @onready var indicator: ColorRect = $Visuals/Indicator
 
+@export var linked_components: Array[NodePath]
+
 var current_interactor : Node
+var _linked_nodes: Array[Node] = []
 
 func _ready() -> void:
 	receiver.on_item_inserted.connect(_on_item_inserted)
 	receiver.on_item_removed.connect(_on_item_removed)
 	switch_comp.toggled.connect(_on_switched)
+	
+	# Cache linked nodes
+	for path in linked_components:
+		var node = get_node_or_null(path)
+		if node:
+			_linked_nodes.append(node)
 
 func _process(_delta: float) -> void:
-	# Visual update for indicator
+	var power_level: float = 0.0
+	
 	if switch_comp.is_on and consumer.is_active:
+		# Calculate power level based on battery charge
+		if consumer.power_source and consumer.power_source.max_charge > 0:
+			power_level = consumer.power_source.current_charge / consumer.power_source.max_charge
+		
+		# Visual update
 		indicator.color = Color(0, 1, 0) # Green ON
 	elif switch_comp.is_on and not consumer.is_active:
 		indicator.color = Color(1, 0, 0) # Red Error/Empty
 	else:
 		indicator.color = Color(0.2, 0, 0) # Off
+		
+	# Distribute power
+	_distribute_power(power_level)
+
+func _distribute_power(level: float) -> void:
+	for node in _linked_nodes:
+		if node.has_method("update_power"):
+			node.update_power(level)
 
 func start_interact(user: Node) -> void:
 	current_interactor = user

@@ -13,7 +13,13 @@ var target_position: Vector2 = Vector2.ZERO
 var has_target: bool = false
 var current_marker: Node2D = null
 
+var current_power_level: float = 0.0 # Default to 0, needs power to move? Or 1.0 for backwards compatibility? 
+# Requirement implied "movement... affected". I'll default to 0.0 effectively stopping the ship if no power.
+
 const MarkerScript = preload("res://objects/DestinationMarker.gd")
+
+func update_power(level: float) -> void:
+	current_power_level = level
 
 func _ready() -> void:
 	if not ship_body:
@@ -65,10 +71,27 @@ func _physics_process(delta: float) -> void:
 		if distance < slow_radius:
 			target_speed = max_speed * (distance / slow_radius)
 			
+		# Apply power scaling
+		# Logic: 
+		# > 25% Power: 100% Speed
+		# <= 25% Power: 50% Speed
+		# 0% Power: 0% Speed
+		
+		var power_factor = 0.0
+		if current_power_level > 0.25:
+			power_factor = 1.0
+		elif current_power_level > 0.0:
+			power_factor = 0.5
+		else:
+			power_factor = 0.0
+			
+		target_speed *= power_factor
+			
 		var desired_velocity = direction * target_speed
 		
 		# Steering (Accelerate towards desired velocity)
-		ship_body.velocity = ship_body.velocity.move_toward(desired_velocity, acceleration * delta)
+		# Also scale acceleration by power factor to make it feel sluggish when low power
+		ship_body.velocity = ship_body.velocity.move_toward(desired_velocity, acceleration * power_factor * delta)
 		
 		# Rotation
 		# Only rotate if we are moving significantly or far enough away

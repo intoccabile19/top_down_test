@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://q4gij7kgr3tn"]
+[gd_scene load_steps=9 format=3 uid="uid://q4gij7kgr3tn"]
 
 [ext_resource type="Script" uid="uid://6qh8gn1ouitw" path="res://objects/Ship.gd" id="1_a2joy"]
 [ext_resource type="Script" uid="uid://b3etby0v0pvgg" path="res://objects/components/ShipGravityComponent.gd" id="2_8dji6"]
 [ext_resource type="PackedScene" uid="uid://fwegv1mqjmmh" path="res://objects/Helm.tscn" id="2_one7x"]
 [ext_resource type="Script" uid="uid://drvvxffdvotv0" path="res://objects/components/ShipMovementComponent.gd" id="3_one7x"]
+[ext_resource type="Script" uid="uid://3sfr71r62wlw" path="res://objects/components/LightController.gd" id="5_one7x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gff64"]
 size = Vector2(595, 339)
@@ -52,3 +53,7 @@ position = Vector2(307, 173.99997)
 scale = Vector2(5.53125, 5.53125)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_one7x")
+
+[node name="LightController" type="Node" parent="." node_paths=PackedStringArray("target_light")]
+script = ExtResource("5_one7x")
+target_light = NodePath("../PointLight2D")
