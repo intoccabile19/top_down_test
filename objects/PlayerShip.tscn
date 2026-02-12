@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://q4gij7kgr3tn"]
+[gd_scene load_steps=8 format=3 uid="uid://q4gij7kgr3tn"]
 
 [ext_resource type="Script" uid="uid://6qh8gn1ouitw" path="res://objects/Ship.gd" id="1_a2joy"]
 [ext_resource type="Script" uid="uid://b3etby0v0pvgg" path="res://objects/components/ShipGravityComponent.gd" id="2_8dji6"]
@@ -7,6 +7,15 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gff64"]
 size = Vector2(595, 339)
+
+[sub_resource type="Gradient" id="Gradient_8dji6"]
+colors = PackedColorArray(0.963293, 0.98082286, 0.65011, 0.3882353, 0, 0, 0, 0.45490196)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_one7x"]
+gradient = SubResource("Gradient_8dji6")
+fill = 1
+fill_from = Vector2(0.47663552, 0.5)
+fill_to = Vector2(0.1542056, 0.10280374)
 
 [node name="PlayerShip" type="CharacterBody2D"]
 script = ExtResource("1_a2joy")
@@ -24,6 +33,7 @@ ship_movement_component = NodePath("../ShipMovementComponent")
 polygon = PackedVector2Array(597, 0, 597, 342, -1, 341, 0, 0, 588, 0, 588, 2, 1, 1, 2, 336, 594, 338, 593, 0)
 
 [node name="GravityArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityArea"]
 position = Vector2(297.5, 170.5)
@@ -36,3 +46,9 @@ gravity_area = NodePath("../GravityArea")
 [node name="ShipMovementComponent" type="Node" parent="." node_paths=PackedStringArray("ship_body")]
 script = ExtResource("3_one7x")
 ship_body = NodePath("..")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(307, 173.99997)
+scale = Vector2(5.53125, 5.53125)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_one7x")
